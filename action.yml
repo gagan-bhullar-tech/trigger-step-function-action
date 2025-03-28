@@ -1,0 +1,13 @@
+name: "Trigger AWS Step Functions"
+description: "Trigger AWS Step Functions"
+author: "Gagan Bhullar"
+branding:
+  icon: "cloud-lightning"
+  color: "orange"
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        $GITHUB_ACTION_PATH/entrypoint.sh
