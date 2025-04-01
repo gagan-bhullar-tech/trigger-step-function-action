@@ -6,7 +6,7 @@ A GitHub Workflow Action for triggering AWS step function
 
 ```yaml
 - name: Trigger Step Function
-  uses: chetan/invalidate-cloudfront-action@v2
+  uses: gagan-bhullar-tech/trigger-step-function-action@v1
   env:
     STATE_MACHINE_ARN: ${{ secrets.STATE_MACHINE_ARN }}
     AWS_REGION: "us-west-1"
@@ -18,8 +18,8 @@ A GitHub Workflow Action for triggering AWS step function
 
 | Param                 | Required? | Description                                                                                        |
 | --------------------- | --------- | -------------------------------------------------------------------------------------------------- |
-| STATE_MACHINE_ARN     | yes       | A state machine ARN which user wants to trigger                                          |
-| AWS_REGION            | yes       | AWS Region to operate in                                                                           |
+| STATE_MACHINE_ARN     | yes       | State machine ARN which user wants to trigger                |
+| AWS_REGION            | yes       | AWS Region                                                   |
 | AWS_ACCESS_KEY_ID     | yes       | Access key with necessary permissions to invoke step functions |
 | AWS_SECRET_ACCESS_KEY | yes       | Secret key                                                                                         |
 
