@@ -18,7 +18,7 @@ jobs:
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:
-                os: [ubuntu-latest, ubuntu-18.04, windows-latest, macos-latest]
+                os: [ubuntu-latest, ubuntu-24.04, windows-latest, macos-latest]
 
         steps:
             - name: "Checkout"
@@ -34,3 +34,14 @@ jobs:
                 aws --version
                 jq --version
                 jq --help
+            
+            - name: "Trigger AWS Step Functions"
+              id: invoke
+              uses: ./
+              env:
+                AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                AWS_REGION: 'us-west-1'
+                STATE_MACHINE_ARN: ${{ secrets.STATE_MACHINE_ARN }}
+
+                
