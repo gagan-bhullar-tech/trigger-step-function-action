@@ -1,0 +1,36 @@
+name: "Test Suite"
+
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  workflow_dispatch:
+    inputs:
+        branch:
+            description: "Branch on which we need to run tests"
+            required: false
+            default: "main"
+
+jobs:
+    tests:
+        name: "Test ${{ matrix.os }}"
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [ubuntu-latest, ubuntu-18.04, windows-latest, macos-latest]
+
+        steps:
+            - name: "Checkout"
+              uses: actions/checkout@v2
+              with:
+                ref: ${{ inputs.branch }}
+            
+            - name: print versions
+              shell: bash
+              run: |
+                uname
+                uname -a
+                aws --version
+                jq --version
+                jq --help

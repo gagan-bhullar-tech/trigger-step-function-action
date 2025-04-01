@@ -21,7 +21,11 @@ if [ $err -eq 1 ]; then
   exit 1
 fi
 
-if [ "$DEBUG" = "1" ]; then
-  echo "*** Enabling debug output (set -x)"
-  set -x
+if [ -z "$STATE_MACHINE_ARN" ]; then
+  echo "error: STATE_MACHINE_ARN is not set"
+  err=1
 fi
+
+aws stepfunctions start-execution \
+  --state-machine-arn "$STATE_MACHINE_ARN" \
+  --region "$AWS_REGION"
