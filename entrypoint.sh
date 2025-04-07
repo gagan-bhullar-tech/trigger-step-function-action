@@ -26,6 +26,11 @@ if [ -z "$STATE_MACHINE_ARN" ]; then
   err=1
 fi
 
+if [ -z "$INPUT" ]; then
+  INPUT="{}"
+fi
+
 aws stepfunctions start-execution \
   --state-machine-arn "$STATE_MACHINE_ARN" \
-  --region "$AWS_REGION"
+  --region "$AWS_REGION" \
+  --input "$INPUT"
